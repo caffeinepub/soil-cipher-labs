@@ -2,11 +2,6 @@ import { Heart } from "lucide-react";
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const appId = encodeURIComponent(
-    typeof window !== "undefined"
-      ? window.location.hostname
-      : "soil-cipher-labs",
-  );
 
   return (
     <footer
@@ -39,16 +34,7 @@ export default function Footer() {
               className="w-3.5 h-3.5 fill-current"
               style={{ color: "oklch(0.72 0.12 65)" }}
             />{" "}
-            using{" "}
-            <a
-              href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${appId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold hover:underline transition-colors"
-              style={{ color: "oklch(0.75 0.08 155)" }}
-            >
-              caffeine.ai
-            </a>
+            using @ Skay web world
           </p>
         </div>
 

@@ -31,16 +31,6 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center">
-        {/* Hero Brand Image */}
-        <div className="flex justify-center mb-8">
-          <img
-            src="/assets/uploads/Make_a_video_stating_with_logo_and_pic_with_headin_delpmaspu-1.png"
-            alt="Soil Cipher Labs - Unlocking the hidden language of soil & fertilizers"
-            className="w-full max-w-2xl rounded-2xl shadow-2xl"
-            style={{ boxShadow: "0 8px 48px oklch(0.15 0.04 155 / 0.5)" }}
-          />
-        </div>
-
         {/* Eyebrow */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cream-400/30 bg-cream-200/10 backdrop-blur-sm mb-8">
           <span
