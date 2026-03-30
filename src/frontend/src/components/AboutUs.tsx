@@ -1,32 +1,40 @@
 import { Leaf } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 export default function AboutUs() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
+
   return (
     <section
       id="about"
+      ref={ref as React.RefObject<HTMLElement>}
       className="section-pad"
-      style={{ backgroundColor: "oklch(0.975 0.008 85)" }}
+      style={{ backgroundColor: "#0a1a0a" }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Text */}
-          <div>
+          <div
+            className={`animate-on-scroll-left ${isVisible ? "visible" : ""}`}
+          >
             <div className="flex items-center gap-3 mb-5">
-              <Leaf className="w-5 h-5 text-forest-600" />
-              <span className="font-sans text-xs font-semibold tracking-widest uppercase text-forest-600">
+              <Leaf className="w-5 h-5" style={{ color: "#4ade80" }} />
+              <span
+                className="font-sans text-xs font-semibold tracking-widest uppercase"
+                style={{ color: "rgba(74,222,128,0.85)" }}
+              >
                 About Us
               </span>
             </div>
             <span className="accent-line" />
-            <h2 className="section-heading text-forest-800 mb-6">
+            <h2 className="section-heading mb-6">
               Where Agriculture Meets Insight, Innovation &amp; Intelligence
             </h2>
-            <div className="space-y-4 body-text text-foreground/80">
+            <div className="space-y-4 body-text">
               <p>
-                Soil isn't just dirt.
+                Soil isn&apos;t just dirt.
                 <br />
-                It's a living, breathing ecosystem speaking a hidden language of
-                minerals, nutrients, moisture, and microbial life.
+                It&apos;s a living, breathing ecosystem speaking a hidden
+                language of minerals, nutrients, moisture, and microbial life.
               </p>
               <p>
                 For decades, farming decisions have relied on approximation. But
@@ -35,7 +43,7 @@ export default function AboutUs() {
               </p>
               <p>
                 At{" "}
-                <strong className="text-forest-700 font-semibold">
+                <strong className="font-semibold" style={{ color: "#4ade80" }}>
                   Soil Cipher Labs
                 </strong>
                 , we bridge traditional agricultural wisdom with modern science
@@ -46,25 +54,27 @@ export default function AboutUs() {
             </div>
             <p
               className="mt-8 font-serif italic text-xl font-semibold"
-              style={{ color: "oklch(0.38 0.095 155)" }}
+              style={{ color: "#4ade80" }}
             >
               Because when soil speaks — we listen.
             </p>
           </div>
 
-          {/* Right: Visual accent block */}
-          <div className="relative">
+          <div
+            className={`relative animate-on-scroll-right ${isVisible ? "visible" : ""}`}
+            style={{ transitionDelay: "0.15s" }}
+          >
             <div
               className="rounded-md overflow-hidden"
               style={{
                 background:
-                  "linear-gradient(135deg, oklch(0.38 0.095 155) 0%, oklch(0.30 0.085 155) 100%)",
-                padding: "3px",
+                  "linear-gradient(135deg, rgba(74,222,128,0.3) 0%, rgba(34,197,94,0.15) 100%)",
+                padding: "2px",
               }}
             >
               <div
                 className="rounded-md p-10 md:p-12"
-                style={{ backgroundColor: "oklch(0.97 0.015 155)" }}
+                style={{ backgroundColor: "#0d2610" }}
               >
                 <div className="space-y-6">
                   {[
@@ -88,16 +98,26 @@ export default function AboutUs() {
                       label: "Measurable Results",
                       desc: "Clarity, precision & profitable outcomes",
                     },
-                  ].map((item) => (
-                    <div key={item.label} className="flex items-start gap-4">
+                  ].map((item, idx) => (
+                    <div
+                      key={item.label}
+                      className={`flex items-start gap-4 animate-on-scroll ${isVisible ? "visible" : ""}`}
+                      style={{ transitionDelay: `${0.2 + idx * 0.1}s` }}
+                    >
                       <span className="text-2xl flex-shrink-0">
                         {item.icon}
                       </span>
                       <div>
-                        <p className="font-sans font-semibold text-forest-800 text-sm">
+                        <p
+                          className="font-sans font-semibold text-sm"
+                          style={{ color: "#e8f5e9" }}
+                        >
                           {item.label}
                         </p>
-                        <p className="font-sans text-sm text-forest-600">
+                        <p
+                          className="font-sans text-sm"
+                          style={{ color: "rgba(232,245,233,0.6)" }}
+                        >
                           {item.desc}
                         </p>
                       </div>
@@ -106,10 +126,11 @@ export default function AboutUs() {
                 </div>
               </div>
             </div>
-            {/* Decorative dot */}
             <div
               className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full opacity-20"
-              style={{ backgroundColor: "oklch(0.72 0.12 65)" }}
+              style={{
+                background: "radial-gradient(circle, #4ade80, transparent)",
+              }}
             />
           </div>
         </div>

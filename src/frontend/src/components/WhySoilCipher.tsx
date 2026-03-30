@@ -1,4 +1,5 @@
 import { Cpu, Microscope, Network, Sprout, Users } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const usps = [
   {
@@ -29,76 +30,95 @@ const usps = [
 ];
 
 export default function WhySoilCipher() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
   return (
     <section
       id="why"
+      ref={ref as React.RefObject<HTMLElement>}
       className="section-pad"
-      style={{ backgroundColor: "oklch(0.30 0.085 155)" }}
+      style={{ backgroundColor: "#0d2610" }}
     >
       <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
+        <div
+          className={`text-center mb-16 animate-on-scroll ${isVisible ? "visible" : ""}`}
+        >
           <span
-            className="font-sans text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "oklch(0.83 0.1 65)" }}
+            className="font-mono text-xs font-semibold tracking-widest uppercase tech-bracket"
+            style={{ color: "rgba(74,222,128,0.85)" }}
           >
             Why Choose Us
           </span>
           <span
             className="block w-16 h-1 rounded-full mx-auto my-5"
-            style={{ backgroundColor: "oklch(0.72 0.12 65)" }}
+            style={{ background: "linear-gradient(90deg, #4ade80, #22c55e)" }}
           />
-          <h2 className="section-heading text-cream-200 mb-4">
-            Why Soil Cipher Labs?
-          </h2>
-          <p className="body-text text-cream-400 max-w-2xl mx-auto">
+          <h2 className="section-heading mb-4">Why Soil Cipher Labs?</h2>
+          <p className="body-text max-w-2xl mx-auto">
             We combine technology, agriculture, and strategy — building the
             future of soil intelligence.
           </p>
         </div>
-
-        {/* USP Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-14">
-          {usps.map((usp) => {
+          {usps.map((usp, idx) => {
             const Icon = usp.icon;
             return (
               <div
                 key={usp.title}
-                className="flex flex-col gap-4 p-6 rounded-md border transition-all duration-200 hover:scale-[1.02]"
+                className={`animate-on-scroll flex flex-col gap-4 p-6 rounded-md border transition-all duration-300 h-full ${isVisible ? "visible" : ""}`}
                 style={{
-                  backgroundColor: "oklch(0.38 0.095 155 / 0.3)",
-                  borderColor: "oklch(0.45 0.1 155 / 0.4)",
+                  backgroundColor: "rgba(255,255,255,0.03)",
+                  borderColor: "rgba(74,222,128,0.18)",
+                  transitionDelay: `${idx * 0.1}s`,
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "rgba(74,222,128,0.45)";
+                  (e.currentTarget as HTMLElement).style.boxShadow =
+                    "0 0 24px rgba(74,222,128,0.1)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.borderColor =
+                    "rgba(74,222,128,0.18)";
+                  (e.currentTarget as HTMLElement).style.boxShadow = "none";
                 }}
               >
                 <div
                   className="w-12 h-12 rounded-sm flex items-center justify-center flex-shrink-0"
                   style={{
-                    backgroundColor: "oklch(0.72 0.12 65 / 0.2)",
-                    color: "oklch(0.83 0.1 65)",
+                    backgroundColor: "rgba(74,222,128,0.1)",
+                    color: "#4ade80",
                   }}
                 >
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="font-serif font-bold text-cream-200 text-lg leading-snug">
+                <h3
+                  className="font-serif font-bold text-lg leading-snug"
+                  style={{ color: "#e8f5e9" }}
+                >
                   {usp.title}
                 </h3>
-                <p className="font-sans text-sm text-cream-400 leading-relaxed">
+                <p
+                  className="font-sans text-sm leading-relaxed"
+                  style={{ color: "rgba(232,245,233,0.65)" }}
+                >
                   {usp.desc}
                 </p>
               </div>
             );
           })}
         </div>
-
-        {/* Closing Statement */}
         <div
-          className="text-center rounded-md p-8 border"
+          className={`text-center rounded-md p-8 border animate-on-scroll ${isVisible ? "visible" : ""}`}
           style={{
-            backgroundColor: "oklch(0.22 0.065 155 / 0.5)",
-            borderColor: "oklch(0.72 0.12 65 / 0.3)",
+            backgroundColor: "rgba(74,222,128,0.06)",
+            borderColor: "rgba(74,222,128,0.25)",
+            transitionDelay: "0.5s",
           }}
         >
-          <p className="font-serif italic text-xl md:text-2xl font-semibold text-cream-200">
+          <p
+            className="font-serif italic text-xl md:text-2xl font-semibold"
+            style={{ color: "#e8f5e9" }}
+          >
             We combine technology, agriculture, and strategy — building the
             future of soil intelligence.
           </p>

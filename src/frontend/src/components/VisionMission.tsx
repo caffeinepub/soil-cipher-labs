@@ -1,4 +1,5 @@
 import { Globe, Target } from "lucide-react";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const visionPoints = [
   "Every farm operates on soil intelligence",
@@ -6,7 +7,6 @@ const visionPoints = [
   "Data replaces guesswork",
   "Sustainability becomes measurable",
 ];
-
 const cultivateLines = [
   "We cultivate resilience.",
   "We cultivate sustainability.",
@@ -14,46 +14,56 @@ const cultivateLines = [
 ];
 
 export default function VisionMission() {
+  const { ref, isVisible } = useScrollAnimation(0.1);
   return (
     <section
       id="vision"
+      ref={ref as React.RefObject<HTMLElement>}
       className="section-pad"
-      style={{ backgroundColor: "oklch(0.18 0.025 60)" }}
+      style={{ backgroundColor: "#0a1a0a" }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Vision */}
-          <div>
+          <div
+            className={`animate-on-scroll-left ${isVisible ? "visible" : ""}`}
+          >
             <div className="flex items-center gap-3 mb-5">
-              <Globe
-                className="w-5 h-5"
-                style={{ color: "oklch(0.72 0.12 65)" }}
-              />
+              <Globe className="w-5 h-5" style={{ color: "#4ade80" }} />
               <span
-                className="font-sans text-xs font-semibold tracking-widest uppercase"
-                style={{ color: "oklch(0.72 0.12 65)" }}
+                className="font-mono text-xs font-semibold tracking-widest uppercase tech-bracket"
+                style={{ color: "rgba(74,222,128,0.85)" }}
               >
                 Our Vision
               </span>
             </div>
             <span
               className="block w-16 h-1 rounded-full mb-6"
-              style={{ backgroundColor: "oklch(0.72 0.12 65)" }}
+              style={{ background: "linear-gradient(90deg, #4ade80, #22c55e)" }}
             />
-            <h2 className="section-heading text-cream-200 mb-8 text-3xl md:text-4xl">
+            <h2 className="section-heading mb-8 text-3xl md:text-4xl">
               Transforming Agriculture Into a Knowledge-Driven Ecosystem.
             </h2>
-            <p className="font-sans text-sm font-semibold tracking-widest uppercase text-cream-400 mb-5">
+            <p
+              className="font-sans text-sm font-semibold tracking-widest uppercase mb-5"
+              style={{ color: "rgba(232,245,233,0.5)" }}
+            >
               We envision a future where:
             </p>
             <ul className="space-y-4 mb-10">
-              {visionPoints.map((point) => (
-                <li key={point} className="flex items-start gap-3">
+              {visionPoints.map((point, idx) => (
+                <li
+                  key={point}
+                  className={`flex items-start gap-3 animate-on-scroll ${isVisible ? "visible" : ""}`}
+                  style={{ transitionDelay: `${0.1 + idx * 0.1}s` }}
+                >
                   <span
-                    className="w-2 h-2 rounded-full flex-shrink-0 mt-2"
-                    style={{ backgroundColor: "oklch(0.72 0.12 65)" }}
+                    className="w-2 h-2 rotate-45 flex-shrink-0 mt-2"
+                    style={{ backgroundColor: "#4ade80" }}
                   />
-                  <span className="font-sans text-base text-cream-300">
+                  <span
+                    className="font-sans text-base"
+                    style={{ color: "rgba(232,245,233,0.8)" }}
+                  >
                     {point}
                   </span>
                 </li>
@@ -61,9 +71,12 @@ export default function VisionMission() {
             </ul>
             <div
               className="border-l-4 pl-5 py-2"
-              style={{ borderColor: "oklch(0.72 0.12 65)" }}
+              style={{ borderColor: "#4ade80" }}
             >
-              <p className="font-serif italic text-cream-300 text-base leading-relaxed">
+              <p
+                className="font-serif italic text-base leading-relaxed"
+                style={{ color: "rgba(232,245,233,0.7)" }}
+              >
                 Soil is not just a resource.
                 <br />
                 It is intelligence waiting to be decoded.
@@ -71,45 +84,46 @@ export default function VisionMission() {
             </div>
           </div>
 
-          {/* Mission */}
-          <div>
+          <div
+            className={`animate-on-scroll-right ${isVisible ? "visible" : ""}`}
+            style={{ transitionDelay: "0.15s" }}
+          >
             <div className="flex items-center gap-3 mb-5">
-              <Target
-                className="w-5 h-5"
-                style={{ color: "oklch(0.55 0.11 155)" }}
-              />
+              <Target className="w-5 h-5" style={{ color: "#4ade80" }} />
               <span
-                className="font-sans text-xs font-semibold tracking-widest uppercase"
-                style={{ color: "oklch(0.55 0.11 155)" }}
+                className="font-mono text-xs font-semibold tracking-widest uppercase tech-bracket"
+                style={{ color: "rgba(74,222,128,0.85)" }}
               >
                 Our Mission
               </span>
             </div>
             <span
               className="block w-16 h-1 rounded-full mb-6"
-              style={{ backgroundColor: "oklch(0.55 0.11 155)" }}
+              style={{ background: "linear-gradient(90deg, #4ade80, #22c55e)" }}
             />
-            <h2 className="section-heading text-cream-200 mb-8 text-3xl md:text-4xl">
+            <h2 className="section-heading mb-8 text-3xl md:text-4xl">
               Our Mission
             </h2>
-            <p className="font-sans text-base text-cream-300 leading-relaxed mb-10">
+            <p
+              className="font-sans text-base leading-relaxed mb-10"
+              style={{ color: "rgba(232,245,233,0.75)" }}
+            >
               To empower farmers, agribusinesses, and institutions with clarity,
               precision, and actionable soil intelligence — creating resilient
               farms and sustainable agricultural ecosystems.
             </p>
-
-            {/* Poetic Callout */}
             <div
-              className="rounded-md p-8"
+              className={`rounded-md p-8 animate-on-scroll-right ${isVisible ? "visible" : ""}`}
               style={{
-                background:
-                  "linear-gradient(135deg, oklch(0.38 0.095 155 / 0.2) 0%, oklch(0.22 0.065 155 / 0.3) 100%)",
-                border: "1px solid oklch(0.38 0.095 155 / 0.3)",
+                background: "rgba(74,222,128,0.06)",
+                border: "1px solid rgba(74,222,128,0.25)",
+                backdropFilter: "blur(12px)",
+                transitionDelay: "0.3s",
               }}
             >
               <p
                 className="font-serif font-semibold text-base mb-4"
-                style={{ color: "oklch(0.75 0.08 155)" }}
+                style={{ color: "#e8f5e9" }}
               >
                 We cultivate more than crops.
               </p>
@@ -117,10 +131,11 @@ export default function VisionMission() {
                 {cultivateLines.map((line, idx) => (
                   <p
                     key={line}
-                    className="font-serif italic text-xl md:text-2xl font-bold text-cream-200"
+                    className={`font-serif italic text-xl md:text-2xl font-bold animate-on-scroll ${isVisible ? "visible" : ""}`}
                     style={{
                       paddingLeft: `${idx * 1.5}rem`,
-                      opacity: 1 - idx * 0.05,
+                      transitionDelay: `${0.35 + idx * 0.12}s`,
+                      color: "#4ade80",
                     }}
                   >
                     {line}
