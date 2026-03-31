@@ -1,19 +1,12 @@
-import {
-  AlertTriangle,
-  Dices,
-  DollarSign,
-  FlaskConical,
-  Sunset,
-  TrendingDown,
-} from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
 
 const painPoints = [
-  { text: "Overuse and misuse of fertilizers", Icon: FlaskConical },
-  { text: "Declining soil organic matter", Icon: TrendingDown },
-  { text: "Rising input costs", Icon: DollarSign },
-  { text: "Yield unpredictability", Icon: Dices },
-  { text: "Long-term land degradation", Icon: Sunset },
+  { text: "Overuse and misuse of fertilizers", emoji: "⚠️" },
+  { text: "Declining soil organic matter", emoji: "📉" },
+  { text: "Rising input costs", emoji: "💸" },
+  { text: "Yield unpredictability", emoji: "🎲" },
+  { text: "Long-term land degradation", emoji: "🏜️" },
 ];
 
 export default function Challenge() {
@@ -53,7 +46,7 @@ export default function Challenge() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-          {painPoints.map(({ text, Icon }, idx) => (
+          {painPoints.map(({ text, emoji }, idx) => (
             <div
               key={text}
               className={`animate-on-scroll flex items-start gap-4 p-5 rounded-md border transition-all duration-300 ${isVisible ? "visible" : ""}`}
@@ -76,13 +69,13 @@ export default function Challenge() {
               }}
             >
               <div
-                className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center"
+                className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-xl"
                 style={{
                   backgroundColor: "rgba(74,222,128,0.1)",
                   border: "1px solid rgba(74,222,128,0.3)",
                 }}
               >
-                <Icon className="w-5 h-5" style={{ color: "#4ade80" }} />
+                {emoji}
               </div>
               <p
                 className="font-sans font-medium text-sm leading-snug pt-2"
